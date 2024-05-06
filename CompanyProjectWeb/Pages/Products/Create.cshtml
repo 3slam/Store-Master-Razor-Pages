@@ -1,0 +1,112 @@
+﻿@page
+@model StoreMaster.Pages.Products.CreateModel
+
+@if (TempData["error"]!= null)
+{
+    <h2 class="text-danger">@TempData["error"]</h2>
+}
+ 
+<form method="post" enctype="multipart/form-data">
+
+    
+
+    <div class="border p-3 mt-4">
+
+        <h2 style="color:red">Create Product</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-9">
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Name" class="p-0"></label>
+                    <input asp-for="Product.Name"   class="form-control" />
+                </div>
+
+                <div class="form-floating py-2 col-12">
+
+                    <select asp-for="Product.CategoryId" asp-items="@Model.Categories" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+
+                    <label asp-for="Product.CategoryId" class="ms-2"></label>
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Description" class="p-0"></label>
+                    <input asp-for="Product.Description" class="form-control"></input>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Author" class="p-0"></label>
+                    <input asp-for="Product.Author"   class="form-control" />
+                    <span asp-validation-for="Product.Author" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Price" class="p-0"></label>
+                    <input asp-for="Product.Price"   class="form-control" />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Price50" class="p-0"></label>
+                    <input asp-for="Product.Price50"   class="form-control" />
+                    <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Price100" class="p-0"></label>
+                    <input asp-for="Product.Price100"   class="form-control" />
+                    <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.ImageUrl"  class="p-0"></label>
+                    <input type="file" name="file" class="form-control" id="imageInput" />
+                     <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3 d-flex  justify-content-end">
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.ImageUrl" class="p-0"></label>
+                    <img id="productImage" class="img-fluid img-thumbnail" src="\Images\products\defaultProductImage.png" alt="Image" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Create</button>
+            </div>
+            <div class="col-md-3">
+                <a asp-page="/Products/DisplayAllProducts" class="btn btn-primary form-control">Back to List</a>
+            </div>
+        </div>
+
+    </div>
+        
+</form>
+
+ @section Scripts {
+
+
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function () {
+            var file = this.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('productImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+   <partial name="_ValidationScriptsPartial" />
+   
+}
+
+ 

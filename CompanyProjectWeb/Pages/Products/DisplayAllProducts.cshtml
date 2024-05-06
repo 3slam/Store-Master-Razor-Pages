@@ -1,0 +1,50 @@
+﻿@page
+@model StoreMaster.Pages.Products.DisplayAllProductsModel
+@if (TempData["success"]!=null)
+{
+    <h1>@TempData["success"]</h1>
+}
+
+    <div>
+    <a style="margin:10px" type="button" asp-page="/Products/Create" class="btn btn-success">Create a new Product</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><input type="text" class="form-control" placeholder="Id" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Image" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Description" disabled></th>
+                         
+                            <th><input type="text" class="form-control" placeholder="Actions" disabled></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td scope ="row">@item.ProductId</td>
+                            <td  >
+                                <img style="width:100px;height:100px" src="@item.ImageUrl" class="img-fluid img-thumbnail" alt="productImage">
+                            </td>
+                                <td>@item.Name</td>
+                                <td>@Html.Raw(@item.Description)</td>
+                                <td>
+
+                                <a type="button" asp-page="/Products/Edit" asp-route-ProductId="@item.ProductId" class="btn btn-success">Edit</a>
+                                <a type="button" asp-page="/Products/Delete" asp-route-ProductId="@item.ProductId" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

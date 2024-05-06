@@ -1,0 +1,48 @@
+﻿@page
+@model StoreMaster.Pages.Categories.DisplayAllCategoriesModel
+@if (TempData["success"]!=null)
+{
+    <h1>@TempData["success"]</h1>
+}
+
+    <div>
+        <a style="margin:10px" type="button" asp-page="/Categories/Create" class="btn btn-success">Create a new category</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><input type="text" class="form-control" placeholder="Id" disabled></th>
+                            
+                            <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                         
+                            <th><input type="text" class="form-control" placeholder="Description" disabled></th>
+                         
+                            <th><input type="text" class="form-control" placeholder="Actions" disabled></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <tr>
+                                <td scope ="row">@item.CategoryId</td>
+                                <td>@item.Name</td>
+                                 <td>@Html.Raw(@item.Description)</td>
+                                <td>
+
+                                    <a type="button" asp-page="/Categories/Edit" asp-route-CategoryId="@item.CategoryId" class="btn btn-success">Edit</a>
+                                    <a type="button" asp-page="/Categories/Delete" asp-route-CategoryId="@item.CategoryId"  class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

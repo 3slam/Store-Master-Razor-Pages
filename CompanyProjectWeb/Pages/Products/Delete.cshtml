@@ -1,0 +1,66 @@
+﻿@page
+@model StoreMaster.Pages.Products.DeleteModel
+
+<form method="post">
+
+    <input asp-for="Product.ProductId" hidden />
+
+    <div class="border p-3 mt-4">
+
+        <h2 style="color:red">Delete Product</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-9">
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Name" class="p-0"></label>
+                    <input asp-for="Product.Name" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Description" class="p-0"></label>
+                    <input asp-for="Product.Description" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Author" class="p-0"></label>
+                    <input asp-for="Product.Author" disabled class="form-control" />
+                    <span asp-validation-for="Product.Author" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Price" class="p-0"></label>
+                    <input asp-for="Product.Price" disabled class="form-control" />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Price50" class="p-0"></label>
+                    <input asp-for="Product.Price50" disabled class="form-control" />
+                    <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.Price100" class="p-0"></label>
+                    <input asp-for="Product.Price100" disabled class="form-control" />
+                    <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3 d-flex  justify-content-end">
+                <div class="mb-3 p-1">
+                    <label asp-for="Product.ImageUrl" class="p-0"></label>
+                    <img  src="@Model.Product.ImageUrl" alt="Image" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Delete</button>
+            </div>
+            <div class="col-md-3">
+                <a asp-page="/Products/DisplayAllProducts" class="btn btn-primary form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>

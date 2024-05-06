@@ -1,0 +1,62 @@
+﻿@page
+@model StoreMaster.Pages.Categories.CreateModel
+
+@if (TempData["error"]!= null)
+{
+    <h2 class="text-danger">@TempData["error"]</h2>
+}
+ 
+<form method="post" enctype="multipart/form-data">
+
+        <div class="border p-3 mt-4">
+             
+                <h2 class="text-primary">Create Category</h2>
+          
+            <div asp-validation-summary="All"></div>
+            
+            <div class="mb-3 row p-1">
+                <label asp-for="Category.Name" class="p-0"></label>
+                <input asp-for="Category.Name" class="form-control" />
+                <span asp-validation-for="Category.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+             <label asp-for="Category.Description" class="p-0"></label>
+             <input asp-for="Category.Description" class="form-control" ></input>
+            <span asp-validation-for="Category.Description" class="text-danger"></span>
+            </div>
+
+        <div class="mb-3 row p-1">
+          
+            <input  type="file" name="file" class="form-control" />
+            
+        </div>
+
+            <div class="row">
+
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                </div>
+
+                <div class="col-6 col-md-3">
+                <a asp-page="/Categories/DisplayAllCategories" class="btn btn-primary form-control">Back to List</a>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+ @section Scripts {
+  @{
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+            });
+        </script>
+     <partial name="_ValidationScriptsPartial" />
+  }
+}
+
+ 
